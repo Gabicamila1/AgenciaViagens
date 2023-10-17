@@ -1,0 +1,53 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.util.Scanner;
+
+public class ConnectionFactory {
+    private static final String USERNAME = "root";
+    private static final String PASSWORD = "";
+    private static final String DATABASE_URL = "jdbc:mysql://localhost:3306/realizeSonhos";
+
+    public static Connection createConnectionToMySQL() throws SQLException {
+        Connection connection = DriverManager.getConnection(DATABASE_URL, USERNAME, PASSWORD);
+        return connection;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Nome:");
+        String nome_usuario = scanner.nextLine();
+
+        System.out.println("Sobrenome:");
+        String sobrenome_usuario = scanner.nextLine();
+
+        System.out.println("Email:");
+        String email_usuario = scanner.nextLine();
+
+        System.out.println("Telefone:");
+        String telefone_usuario = scanner.nextLine();
+
+        // Aqui você pode criar um objeto de Cadastro e usar os valores inseridos.
+        Cadastro cadastro = new Cadastro(nome_usuario, sobrenome_usuario, email_usuario, telefone_usuario);
+    }
+}
+
+public class Cadastro {
+    private String nome_usuario;
+    private String sobrenome_usuario;
+    private String email_usuario;
+    private String telefone_usuario;
+
+    public Cadastro(String nome, String sobrenome, String email, String telefone) {
+        this.nome_usuario = nome;
+        this.sobrenome_usuario = sobrenome;
+        this.email_usuario = email;
+        this.telefone_usuario = telefone;
+    }
+
+    public String getNome() {
+        return nome_usuario;
+    }
+}
